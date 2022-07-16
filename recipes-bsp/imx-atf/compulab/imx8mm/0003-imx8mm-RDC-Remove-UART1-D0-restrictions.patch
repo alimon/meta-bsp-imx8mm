@@ -1,0 +1,25 @@
+From 14c8b07f8fbf1ec89dc9f834dc3e697e1eee4a9b Mon Sep 17 00:00:00 2001
+From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
+Date: Thu, 14 Jul 2022 17:43:17 +0300
+Subject: [PATCH 3/3] imx8mm: RDC: Remove UART1 D0 restrictions
+
+Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
+---
+ plat/imx/imx8m/imx8mm/imx8mm_bl31_setup.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/plat/imx/imx8m/imx8mm/imx8mm_bl31_setup.c b/plat/imx/imx8m/imx8mm/imx8mm_bl31_setup.c
+index c7bfd3f9e..1c2d737b9 100644
+--- a/plat/imx/imx8m/imx8mm/imx8mm_bl31_setup.c
++++ b/plat/imx/imx8m/imx8mm/imx8mm_bl31_setup.c
+@@ -59,7 +59,6 @@ static const struct imx_rdc_cfg rdc[] = {
+ 
+ 	/* peripherals domain permission */
+ 	RDC_PDAPn(RDC_PDAP_UART4, D0R | D0W),
+-	RDC_PDAPn(RDC_PDAP_UART1, D0R | D0W),
+ 
+ 	/* memory region */
+ 
+-- 
+2.17.1
+

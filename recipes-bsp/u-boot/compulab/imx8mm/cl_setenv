@@ -16,6 +16,8 @@ fi
 done
 }
 
+[[ -f ${CONF} ]] || fw_printenv -e > ${CONF}
+
 force_rw 1
 
 fw_setenv $@

@@ -1,0 +1,39 @@
+From 4051e95f53f90029f2eb0e4495e3c8b4c63f8450 Mon Sep 17 00:00:00 2001
+From: Kirill Kapranov <kirill.kapranov@compulab.co.il>
+Date: Mon, 30 May 2022 23:50:29 +0300
+Subject: [PATCH 57/57] Migration to 5.10.72
+
+Signed-off-by: Kirill Kapranov <kirill.kapranov@compulab.co.il>
+---
+ sound/soc/fsl/fsl_sai.c               | 8 +++-----
+ 1 files changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+index df5d0973fa71..af4dd38167d8 100644
+--- a/sound/soc/fsl/fsl_sai.c
++++ b/sound/soc/fsl/fsl_sai.c
+@@ -1313,10 +1313,8 @@ static int fsl_sai_probe(struct platform_device *pdev)
+ 	int index;
+ 
+ 	sai = devm_kzalloc(&pdev->dev, sizeof(*sai), GFP_KERNEL);
+-	if (!sai) {
+-		ret = -ENOMEM;
+-		goto general_finish;
+-	}
++	if (!sai) 
++		return -ENOMEM;
+ 
+ 	sai->pdev = pdev;
+ 	sai->soc_data = of_device_get_match_data(&pdev->dev);
+@@ -1517,7 +1515,7 @@ static int fsl_sai_probe(struct platform_device *pdev)
+ 	regcache_cache_only(sai->regmap, true);
+ 
+ 	ret = devm_snd_soc_register_component(&pdev->dev, &fsl_component,
+-		sysfs_create_group			      &sai->cpu_dai_drv, 1);
++					      &sai->cpu_dai_drv, 1);
+ 	if (ret)
+ 		goto err_component_register;
+ 
+-- 
+2.11.0
+
